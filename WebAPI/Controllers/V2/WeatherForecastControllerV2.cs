@@ -5,9 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.V2
 {
-    public class WeatherForecastController : ApiControllerV1
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiController]
+    public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {

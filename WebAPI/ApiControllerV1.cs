@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI
 {
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [Authorize("defaultpolicy")]
     public class ApiControllerV1 : ControllerBase
