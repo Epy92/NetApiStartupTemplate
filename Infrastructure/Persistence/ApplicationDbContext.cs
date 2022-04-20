@@ -22,7 +22,7 @@ namespace Infrastructure.Persistence
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=host.docker.internal;Port=2345;Database=postgres;Username=postgres;Password=changeme");
+                optionsBuilder.UseNpgsql("Host=host.docker.internal;Port=2345;Database=dbname;Username=postgres;Password=changeme");
             }
         }
 
@@ -30,7 +30,6 @@ namespace Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }

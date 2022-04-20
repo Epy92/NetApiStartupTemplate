@@ -28,9 +28,11 @@ namespace Application
             services.Configure<IdentityOptions>(options =>
             {
                 // Default Password settings.
-                options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
             });
 
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -78,6 +80,11 @@ namespace Application
             });
 
             return services;
+        }
+
+        public static void SeedDatabase(IServiceProvider serviceProvider, IConfiguration configuration) 
+        {
+            Seed.CreateRoles(serviceProvider, configuration).Wait();
         }
     }
 }
