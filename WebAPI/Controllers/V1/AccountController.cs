@@ -1,15 +1,17 @@
 ﻿using Application.Models;
 using Infrastructure;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using WebAPI.ApiVersioning;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers.v1
 {
-    [Route("api/v1/Account")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AccountController : ApiControllerV1
     {
         private readonly UserManager<ApplicationUser> _userManager;

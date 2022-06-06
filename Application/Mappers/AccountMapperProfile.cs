@@ -1,7 +1,7 @@
 ﻿using Application.Models;
 using AutoMapper;
-using Infrastructure;
-using Infrastructure.DatabaseModels;
+using Domain.Entities;
+using Infrastructure.Identity;
 
 namespace Application.Mappers
 {

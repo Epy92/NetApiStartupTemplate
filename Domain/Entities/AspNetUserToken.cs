@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Infrastructure.DatabaseModels
+namespace Domain.Entities
 {
     public partial class AspNetUserToken
     {

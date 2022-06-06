@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI
+namespace WebAPI.ApiVersioning
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]

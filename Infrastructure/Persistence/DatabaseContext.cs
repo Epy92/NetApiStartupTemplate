@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Infrastructure.Persistence;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.DatabaseModels
+namespace Infrastructure.Persistence
 {
     public partial class DatabaseContext : DbContext
     {

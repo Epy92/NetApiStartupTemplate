@@ -1,4 +1,5 @@
 ﻿using Application;
+using AutoWrapper;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -97,6 +98,8 @@ namespace WebAPI
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
+            app.UseApiResponseAndExceptionWrapper();
 
             app.UseEndpoints(endpoints =>
             {
