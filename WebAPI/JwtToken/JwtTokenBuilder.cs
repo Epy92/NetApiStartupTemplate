@@ -9,14 +9,14 @@ namespace WebAPI.JwtToken
 {
     public class JwtTokenBuilder
     {
-        private SecurityKey securityKey = null;
+        private SymmetricSecurityKey securityKey = null;
         private string subject = "";
         private string issuer = "";
         private string audience = "";
         private Dictionary<string, string> claims = new Dictionary<string, string>();
         private int expiryInHours = 24;
 
-        public JwtTokenBuilder AddSecurityKey(SecurityKey securityKey)
+        public JwtTokenBuilder AddSecurityKey(SymmetricSecurityKey securityKey)
         {
             this.securityKey = securityKey;
             return this;

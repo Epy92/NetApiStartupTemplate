@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using WebAPI.JwtToken;
 
 namespace WebAPI
 {
@@ -46,12 +47,20 @@ namespace WebAPI
                     In = ParameterLocation.Header,
                     Description = "Please insert JWT with Bearer into field",
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
+                    Scheme = "Bearer",
+                    Type = SecuritySchemeType.Http
                 });
 
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement {
                    {
-                     new OpenApiSecurityScheme{Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme, Id = "Bearer"}}, Array.Empty<string>()
+                     new OpenApiSecurityScheme
+                     {
+                        Reference = new OpenApiReference
+                         {
+                            Type = ReferenceType.SecurityScheme,
+                             Id = "Bearer"
+                         }
+                     }, Array.Empty<string>()
                    }
                 });
             });
@@ -60,6 +69,10 @@ namespace WebAPI
 
             services.AddApplicationLayer(Configuration);
             services.AddJwtAuthentication(Configuration);
+
+            var jwtTokenConfig = new JwtTokenConfig();
+            Configuration.Bind("JwtTokenConfig", jwtTokenConfig);
+            services.AddSingleton(jwtTokenConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

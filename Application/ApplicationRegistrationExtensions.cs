@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Application
 {
@@ -50,14 +51,15 @@ namespace Application
 
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            var appSettingsSection = configuration.GetSection("AppSettings");
-            var key = Encoding.ASCII.GetBytes(appSettingsSection.GetSection("JwtSecret").Value);
+            var appSettingsSection = configuration.GetSection("JwtTokenConfig");
+            var key = Encoding.ASCII.GetBytes(appSettingsSection.GetSection("Secret").Value);
 
             services.AddAutoMapper(typeof(ApplicationRegistrationExtensions));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
                {
+                   options.SaveToken = true;
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
                        ValidateIssuer = false,
@@ -67,11 +69,19 @@ namespace Application
                    };
                    options.Events = new JwtBearerEvents
                    {
+                       OnAuthenticationFailed = context =>
+                       {
+                           if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                           {
+                               context.Response.Headers.Add("IS-TOKEN-EXPIRED", "true");
+                           }
+                           return Task.CompletedTask;
+                       }
                    };
                });
 
             ////Authorization
-            services.AddAuthorizationCore(options =>
+            services.AddAuthorization(options =>
             {
                 options.AddPolicy("defaultpolicy", policy =>
                 {

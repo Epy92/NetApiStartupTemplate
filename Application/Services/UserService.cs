@@ -23,7 +23,6 @@ namespace Application.Services
 
         public IEnumerable<UserDto> GetAll()
         {
-            throw new System.Exception("TEST");
             var users = _userRepository.GetAll().Include(x=>x.Roles).AsEnumerable();
             var allUsers = _mapper.Map<IEnumerable<UserDto>>(users);
             //foreach (var user in allUsers)

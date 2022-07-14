@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet]
         public async Task<ApiResponse> GetAll()
         {
