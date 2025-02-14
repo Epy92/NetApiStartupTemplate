@@ -1,16 +1,15 @@
-using Microsoft.AspNetCore.Authorization;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebAPI.ApiVersioning;
 
 namespace WebAPI.Controllers.V2
 {
-    [ApiVersion("2.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiController]
-    public class WeatherForecastController : ControllerBase
+    [ApiVersion("2")]
+    public class WeatherForecastController : ApiController
     {
         private static readonly string[] Summaries = new[]
         {
