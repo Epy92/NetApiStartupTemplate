@@ -1,4 +1,5 @@
 ﻿using Application.ServiceInterfaces;
+using Asp.Versioning;
 using AutoWrapper.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +8,8 @@ using WebAPI.ApiVersioning;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/v1/User")]
-    public class UserController : ApiControllerV1
+    [ApiVersion("1")]
+    public class UserController : ApiController
     {
         private readonly IUserService _userService;
 

@@ -1,5 +1,5 @@
 ﻿using Application.Models;
-using Infrastructure;
+using Asp.Versioning;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,8 +16,8 @@ using WebAPI.JwtToken;
 
 namespace WebAPI.Controllers.v1
 {
-    [Route("api/v{version:apiVersion}/[controller]")]
-    public class AccountController : ApiControllerV1
+    [ApiVersion("1")]
+    public class AccountController : ApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
